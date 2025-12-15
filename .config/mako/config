@@ -1,0 +1,31 @@
+# Основные параметры стиля
+background-color=#1F1F28
+text-color=#DCD7BA
+border-color=#363646
+progress-color=over #E6C384
+border-size=1
+border-radius=11
+
+# Размеры и отступы
+width=300
+height=120
+margin=10
+padding=15
+
+# Параметры текста
+font=sans-serif 10
+markup=true
+text-alignment=center
+
+# Поведение уведомлений
+default-timeout=10000
+ignore-timeout=false
+group-by=app-name
+sort=-time
+
+# Разное
+actions=true
+history=true
+max-visible=5
+layer=overlay
+anchor=top-right

@@ -1,0 +1,25 @@
+#!/bin/bash
+# Создаем меню с помощью wofi
+selected=$(echo -e " Производительность\n Сбалансированный\n Экономия энергии" | wofi --dmenu --prompt="Выберите профиль питания" --style=~/.config/wofi/style.css)
+
+# Обрабатываем выбор
+case "$selected" in
+    " Производительность")
+        new_profile="performance"
+        ;;
+    " Сбалансированный")
+        new_profile="balanced"
+        ;;
+   " Экономия энергии")
+       new_profile="power-saver"
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+# Применяем новый профиль
+powerprofilesctl set $new_profile
+
+# Отправляем уведомление о смене профиля (убедитесь, что dunst запущен)
+dunstify -h string:x-dunst-stack-tag:powerprofile -i "preferences-system-power-management" "Профиль питания изменен на: $new_profile"

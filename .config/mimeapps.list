@@ -1,0 +1,14 @@
+[Default Applications]
+x-scheme-handler/tg=userapp-AyuGram Desktop-RWFZE3.desktop
+x-scheme-handler/tonsite=userapp-AyuGram Desktop-U3CZE3.desktop
+text/css=userapp-kitty micro %f-EQL2E3.desktop
+x-scheme-handler/discord=vesktop.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-AyuGram Desktop-RWFZE3.desktop;
+x-scheme-handler/tonsite=userapp-AyuGram Desktop-U3CZE3.desktop;
+application/json=userapp-kitty micro %f-EQL2E3.desktop;
+text/css=userapp-kitty micro %f-EQL2E3.desktop;
+text/plain=userapp-kitty micro %f-EQL2E3.desktop;
+application/x-shellscript=userapp-kitty micro %f-EQL2E3.desktop;
+text/markdown=obsidian.desktop;

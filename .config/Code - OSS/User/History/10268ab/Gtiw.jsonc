@@ -1,0 +1,195 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-bottom": 0,
+  "spacing": 0,
+
+  "modules-left": [
+    "clock",
+    "custom/cava",
+    "group/hardware",
+    "tray"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "hyprland/language",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "power-profiles-daemon",
+    "battery",
+    "group/group-power"
+  ],
+
+  "clock": {
+    "tooltip": false,
+    "format": "{:%H:%M:%S  -  %A, %d}",
+    "interval": 1
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 5
+  },
+
+  "custom/cava": {
+    "format": "{}",
+    "exec": "~/.config/scripts/waybar/waybar-cava"
+  },
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-cpu",
+      "transition-left-to-right": true
+    },
+    "modules": [
+      "cpu",
+      "memory",
+      "custom/cpu_temp",
+      "custom/gpu_temp"
+    ]
+  },
+
+  "cpu": {
+    "interval": 1,
+    "format": "  {usage:>2}%",
+    "max-length": 10
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "max-length": 10
+  },
+
+  "custom/cpu_temp": {
+    "exec": "sensors | grep -A 0 'Tdie\\|Tctl' | head -1 | awk '{print $2}' | sed 's/+//;s/°C//'",
+    "format": " {}°C",
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "custom/gpu_temp": {
+    "exec": "sensors | grep -A 0 'edge\\|junction' | head -1 | awk '{print $2}' | sed 's/+//;s/°C//'",
+    "format": "   {}°C",
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "us",
+    "format-ru": "zov",
+    "keyboard-name": "at-translated-set-2-keyboard"
+  },
+
+  "network": {
+    "format-wifi": "󰤢",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤠",
+    "interval": 5,
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "on-click": "kitty nmtui"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": " ",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "scroll-step": 4.0,
+    "max-volume": 125,
+    "on-click": "pavucontrol",
+    "on-click-right": "bash -c 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'"
+  },
+
+  "backlight": {
+    "format": "{icon}  {percent}%",
+    "format-icons": ["", "󰃜", "󰃛", "󰃞", "󰃝", "󰃟", "󰃠"],
+    "tooltip": false
+  },
+
+  "battery": {
+    "interval": 2,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-full": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""],
+    "on-click": "pavucontrol"
+  },
+
+  "power-profiles-daemon": {
+    "format": "⚡ {profile}",
+    "tooltip-format": "Профиль питания: <b>{profile}</b>",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    },
+    "on-click": "~/.config/scripts/waybar/pdd-wofi",
+    "on-click-right": "powerprofilesctl set balanced"
+  },
+
+  "group/group-power": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-power",
+      "transition-left-to-right": true
+    },
+    "modules": [
+      "custom/power",
+      "custom/quit",
+      "custom/lock",
+      "custom/reboot"
+    ]
+  },
+
+  "custom/quit": {
+    "format": "󰗼",
+    "tooltip": false,
+    "on-click": "hyprctl dispatch exit"
+  },
+
+  "custom/lock": {
+    "format": "󰍁",
+    "tooltip": false,
+    "on-click": "hyprlock"
+  },
+
+  "custom/reboot": {
+    "format": "󰜉",
+    "tooltip": false,
+    "on-click": "reboot"
+  },
+
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "shutdown now"
+  }
+}

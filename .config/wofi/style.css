@@ -1,0 +1,102 @@
+/* ~/.config/wofi/style.css */
+/* Kanagawa Wave Theme */
+
+window {
+    margin: 0px;
+    border: 2px solid #363646; /* sumiInk5 */
+    border-radius: 12px;
+    background-color: rgba(31, 31, 40, 0.95); /* sumiInk3 с прозрачностью */
+    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", monospace;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#input {
+    all: unset; /* Сбрасываем стандартные стили */
+    margin: 15px;
+    padding: 8px 12px;
+    border: 1px solid #54546D; /* sumiInk6 */
+    border-radius: 8px;
+    color: #DCD7BA; /* fujiWhite */
+    background-color: #1F1F28; /* sumiInk3 */
+    box-shadow: inset 0 0 0 1px #2A2A37; /* sumiInk4 */
+    min-height: 28px;
+}
+
+#input:focus {
+    border: 1px solid #E6C384; /* carpYellow */
+    box-shadow: inset 0 0 0 1px #C8C093; /* oldWhite */
+}
+
+#inner-box {
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 3px 5px;
+    border: none;
+    color: #DCD7BA; /* fujiWhite */
+}
+
+#text:selected {
+    color: #1F1F28; /* sumiInk3 - темный текст на светлом фоне */
+    font-weight: 600;
+}
+
+#entry {
+    margin: 2px 5px;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    padding: 6px 10px;
+    min-height: 20px;
+}
+
+/* Состояние при наведении */
+#entry:hover {
+    background-color: #2A2A37; /* sumiInk4 */
+}
+
+/* Состояние выделения (активное) */
+#entry:selected {
+    background-color: #E6C384; /* carpYellow */
+    outline: none;
+}
+
+/* Стиль для иконок в списке */
+#entry image {
+    margin-right: 8px;
+    color: #727169; /* fujiGray */
+}
+
+/* Стиль для иконок в выделенном элементе */
+#entry:selected image {
+    color: #1F1F28; /* sumiInk3 */
+}
+
+/* Стиль для подсказки (prompt) */
+#prompt {
+    margin: 0;
+    color: #727169; /* fujiGray */
+    font-size: 13px;
+}
+
+#img {
+  margin: 2px;
+  padding-left: 4px;
+  border-radius: 4px;
+}

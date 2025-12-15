@@ -1,0 +1,120 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-bottom": 0,
+  "spacing": 0,
+
+  "modules-left": [
+    "clock",
+    "tray"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "hyprland/language",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "power-profiles-daemon",
+    "battery",
+    "custom/power-menu"
+  ],
+
+  "clock": {
+    "tooltip": false,
+    "format": "{:%H:%M:%S  -  %A, %d}",
+    "interval": 1
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 5
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "us",
+    "format-ru": "zov",
+    "keyboard-name": "-------gaming-keyboard"
+  },
+
+  "network": {
+    "format-wifi": "󰤢",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤠",
+    "interval": 5,
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "on-click": "kitty nmtui"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": " ",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "scroll-step": 4.0,
+    "max-volume": 125,
+    "on-click": "helvum",
+    "on-click-right": "bash -c 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'",
+    "tooltip": true,
+    "tooltip-format": "Громкость: {volume}%"
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}",
+    "format-icons": ["", "󰃜", "󰃛", "󰃞", "󰃝", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "on-click": "bash -c 'cur=$(brightnessctl g); max=$(brightnessctl m); if [ $cur -lt $max ]; then brightnessctl s $max; else brightnessctl s 10; fi'",
+    "tooltip": true,
+    "tooltip-format": "Яркость: {percent}%"
+  },
+
+  "battery": {
+    "interval": 2,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-full": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": "Батарея: {capacity}% ({time})"
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "custom/power-menu": {
+    "exec": "echo '{\"text\": \"\", \"tooltip\": \"Меню питания\"}'",
+    "return-type": "json",
+    "format": "{icon}",
+    "on-click": "bash -c \"selected=$(echo -e '󰜉 Перезагрузка\\n󰗼 Выход\\n󰍁 Заблокировать\\n Выключить' | wofi --dmenu --prompt='Меню питания'); case \\\"$selected\\\" in '󰜉 Перезагрузка') reboot ;; '󰗼 Выход') hyprctl dispatch exit ;; '󰍁 Заблокировать') hyprlock ;; ' Выключить') shutdown now ;; esac\""
+  }
+}

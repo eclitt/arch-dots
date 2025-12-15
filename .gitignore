@@ -1,0 +1,41 @@
+# VSCode/Code OSS
+.vscode/
+Code - OSS/CachedExtensionVSIXs/
+Code - OSS/User/workspaceStorage/
+Code - OSS/User/globalStorage/
+Code - OSS/User/CachedExtensions/
+*.vsix
+
+# JetBrains IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Temporary files
+*~
+*.tmp
+*.temp
+.cache/
+tmp/
+
+# Logs
+*.log
+logs/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Binary files
+*.bin
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Large media files
+*.mp4
+*.avi
+*.mov
+*.mkv

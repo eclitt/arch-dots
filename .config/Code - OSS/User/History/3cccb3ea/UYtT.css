@@ -1,0 +1,104 @@
+/* --- Global Styles --- */
+* {
+  font-family: 'NotoSans Nerd Font', SF Pro Display;
+  font-size: 13px; /* Уменьшил размер шрифта */
+  }
+
+/* --- Waybar Container --- */
+#waybar {
+  background: transparent;
+  color: #DCD7BA; /* fujiWhite */
+  font-weight: 500;
+}
+
+/* --- Все модули --- */
+#clock,
+#custom-cava,
+#hardware
+#tray,
+#tray > .needs-attention,
+#language,
+#network,
+#pulseaudio,
+#backlight,
+#power-profiles-daemon,
+#battery,
+#group-power {
+  background-color: #1F1F28; /* sumiInk3 */
+  padding: 0.1rem 0.6rem; /* СИЛЬНО уменьшил отступы */
+  margin: 2px; /* Уменьшил внешние отступы */
+  border-radius: 11px; /* Меньшее скругление */
+  border: 1px solid #727169; /* sumiInk5 */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+/* --- groups --- */
+#cpu,
+#memory,
+#custom-cpu_temp,
+#custom-gpu_temp,
+#custom-power,
+#custom-quit,
+#custom-lock,
+#custom-reboot {
+  background-color: #1F1F28; /* sumiInk3 */
+  padding: 0.1rem 0.6rem; /* СИЛЬНО уменьшил отступы */
+  margin: 2px; /* Уменьшил внешние отступы */
+  border-radius: 11px; /* Меньшее скругление */
+  border: 1px solid #727169; /* sumiInk5 */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+/* --- Paddings --- */
+
+#network {
+  padding: 0.2rem 0.7rem 0.2rem 0.6rem;}
+
+#tray {
+  padding: 0.2rem 0.6rem;}
+
+#tray > .passive,
+#tray > .active,
+#tray > .needs-attention {
+  padding: 1px 2px;}
+
+/* --- Hover effects --- */
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#power-profiles-daemon:hover,
+#workspaces button:hover,
+#tray > *:hover {
+  background-color: #2A2A37; /* sumiInk4 */
+  border-radius: 11px; 
+  color: #E6C384; /* carpYellow */}  
+
+/* --- Workspaces --- */
+#workspaces {
+  padding: 0.2rem 0.2rem 0.2rem 0.2rem; /* Минимальные отступы */
+  background-color: #1F1F28; /* sumiInk3 */ 
+  margin: 0 3px;
+  border-radius: 13px;}
+
+#workspaces button {
+  color: #727169; /* fujiGray */
+  padding: 0.2rem 0.1rem 0.2rem 0.1rem; /* Ещё меньше */
+  background: transparent;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  margin: 0 1px;
+  min-height: 18px;}
+
+#workspaces button.active {
+  color: #E6C384; /* carpYellow */}
+
+/* --- Tooltip Styles --- */
+tooltip {
+  background-color: #1F1F28; /* sumiInk3 */
+  color: #DCD7BA; /* fujiWhite */
+  padding: 4px 8px;
+  margin: 3px 0;
+  border-radius: 4px;
+  border: 1px solid #363646; /* sumiInk5 */
+  font-size: 11px;
+}
