@@ -3,9 +3,8 @@
 # Конфигурация
 CACHE_DIR="${HOME}/.cache/weather"
 CACHE_FILE="${CACHE_DIR}/weather.txt"
-MAX_AGE_MINUTES=10
+MAX_AGE_MINUTES=5  # Изменил на 5 минут по вашему требованию
 
-# Создаем директорию для кэша если не существует
 mkdir -p "$CACHE_DIR"
 
 # Проверка возраста файла
@@ -14,27 +13,40 @@ is_cache_valid() {
     [[ $(find "$CACHE_FILE" -mmin +"$MAX_AGE_MINUTES" 2>/dev/null | wc -l) -eq 0 ]]
 }
 
-# Получение данных о погоде
+# Получение ТОЛЬКО ТЕКСТОВОЙ погоды
 get_weather() {
-    curl -s --connect-timeout 5 "wttr.in/?format=1"
+    # Получаем чистую температуру (без иконок)
+    local temp=$(curl -s --connect-timeout 5 "wttr.in/Novosibirsk?format=%t" 2>/dev/null)
+    
+    # Если получили что-то
+    if [[ -n "$temp" ]]; then
+        # Удаляем все лишние символы, оставляем только температуру
+        echo "$temp" | sed 's/[^0-9+°C°F-]//g'
+    else
+        # Fallback значение
+        echo "Error"
+    fi
 }
 
 # Основная логика
 if is_cache_valid; then
+    # Используем кеш, если он новый
     cat "$CACHE_FILE"
 else
+    # Кеш старый или его нет - пытаемся получить свежие данные
     weather_data=$(get_weather)
     
-    if [[ $? -eq 0 && -n "$weather_data" ]]; then
+    if [[ $? -eq 0 && -n "$weather_data" && "$weather_data" != "Error" ]]; then
+        # Успешно получили данные с сайта
         echo "$weather_data" > "$CACHE_FILE"
         echo "$weather_data"
     else
-        # Если запрос не удался, пробуем использовать старые данные если они есть
+        # Не удалось получить свежие данные - используем кеш с пометкой
         if [[ -f "$CACHE_FILE" ]]; then
-            echo "[Кэш] $(cat "$CACHE_FILE")"
+            echo "[кеш] $(cat "$CACHE_FILE")"
         else
-            echo "Не удалось получить данные о погоде"
-            exit 1
+            # Нет даже кеша - используем значение по умолчанию
+            echo "Error: no cahce and connect"
         fi
     fi
 fi
