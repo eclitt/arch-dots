@@ -1,120 +1,117 @@
 {
-  "layer": "top",
-  "position": "top",
-  "margin-bottom": 0,
-  "spacing": 0,
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 5,
 
-  "modules-left": [
-    "clock",
-    "tray"
-  ],
+    "modules-left": ["hyprland/workspaces", "group/usage"],
+    "modules-center": ["clock"],
+    "modules-right": ["wireplumber", "group/bat", "group/net", "tray"],
 
-  "modules-center": [
-    "hyprland/workspaces"
-  ],
-
-  "modules-right": [
-    "hyprland/language",
-    "network",
-    "pulseaudio",
-    "backlight",
-    "power-profiles-daemon",
-    "battery",
-    "custom/power-menu"
-  ],
-
-  "clock": {
-    "tooltip": false,
-    "format": "{:%H:%M:%S  -  %A, %d}",
-    "interval": 1
-  },
-
-  "tray": {
-    "icon-size": 16,
-    "spacing": 5
-  },
-
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      "active": "",
-      "default": ""
-    }
-  },
-
-  "hyprland/language": {
-    "format": "{}",
-    "format-en": "us",
-    "format-ru": "zov",
-    "keyboard-name": "-------gaming-keyboard"
-  },
-
-  "network": {
-    "format-wifi": "󰤢",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰤠",
-    "interval": 5,
-    "tooltip-format": "{essid} ({signalStrength}%)",
-    "on-click": "kitty nmtui"
-  },
-
-  "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-muted": " ",
-    "format-icons": {
-      "default": ["", "", ""]
+    "group/usage": {
+        "orientation": "horizontal",
+        "modules": ["memory", "temperature"]
     },
-    "scroll-step": 4.0,
-    "max-volume": 125,
-    "on-click": "helvum",
-    "on-click-right": "bash -c 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'",
-    "tooltip": true,
-    "tooltip-format": "Громкость: {volume}%"
-  },
 
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon}",
-    "format-icons": ["", "󰃜", "󰃛", "󰃞", "󰃝", "󰃟", "󰃠"],
-    "on-scroll-up": "brightnessctl set +5%",
-    "on-scroll-down": "brightnessctl set 5%-",
-    "on-click": "bash -c 'cur=$(brightnessctl g); max=$(brightnessctl m); if [ $cur -lt $max ]; then brightnessctl s $max; else brightnessctl s 10; fi'",
-    "tooltip": true,
-    "tooltip-format": "Яркость: {percent}%"
-  },
-
-  "battery": {
-    "interval": 2,
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 15
+    "group/bat": {
+        "orientation": "horizontal",
+        "modules": ["battery", "backlight","power-profiles-daemon"]
     },
-    "format": "{icon}  {capacity}%",
-    "format-full": "{icon}  {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{icon} {time}",
-    "format-icons": ["", "", "", "", ""],
-    "tooltip": true,
-    "tooltip-format": "Батарея: {capacity}% ({time})"
-  },
 
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
-    "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
+    "group/net": {
+        "orientation": "horizontal",
+        "modules": ["hyprland/language", "network", "bluetooth"]
+    },
+
+    "hyprland/workspaces": {
+        "format": "<span size='larger'>{icon}</span>",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "\uf444",
+            "default": "\uf4c3"
+        },
+        "icon-size": 10,
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+        }
+    },
+
+    "clock": {
+        "format": "{:%d.%m.%Y | %H:%M}"
+    },
+
+    "wireplumber": {
+        "format": "\udb81\udd7e  {volume}%",
+        "max-volume": 100,
+        "scroll-step": 5,
+        "on-click": "helvum"
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "format": "{icon}  {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+    },
+    
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+
+    "backlight": {
+        "format": "\udb80\udcdf  {percent}%"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "\uf4bc  {used:0.1f}G"
+    },
+
+    "temperature": {
+        "format": " {temperatureC}°C"
+    },
+
+    "network": {
+        "format": "",
+        "format-ethernet": "\udb83\udc9d ",
+        "format-wifi": "{icon} ",
+        "format-disconnected": "\udb83\udc9c ",
+        "format-icons": ["\udb82\udd2f", "\udb82\udd1f", "\udb82\udd22", "\udb82\udd25", "\udb82\udd28"],
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "kitty nmtui",
+    },
+
+    "bluetooth": {
+        "format": "\udb80\udcaf",
+        "format-disabled": "\udb80\udcb2",
+        "format-connected": "\udb80\udcb1",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
+    },
+
+    "hyprland/language": {
+        "format": "{short}"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 16
     }
-  },
-  "custom/power-menu": {
-    "exec": "echo '{\"text\": \"\", \"tooltip\": \"Меню питания\"}'",
-    "return-type": "json",
-    "format": "{icon}",
-    "on-click": "bash -c \"selected=$(echo -e '󰜉 Перезагрузка\\n󰗼 Выход\\n󰍁 Заблокировать\\n Выключить' | wofi --dmenu --prompt='Меню питания'); case \\\"$selected\\\" in '󰜉 Перезагрузка') reboot ;; '󰗼 Выход') hyprctl dispatch exit ;; '󰍁 Заблокировать') hyprlock ;; ' Выключить') shutdown now ;; esac\""
-  }
 }
